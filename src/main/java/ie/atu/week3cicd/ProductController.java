@@ -1,10 +1,7 @@
 package ie.atu.week3cicd;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +24,20 @@ public class ProductController {
     public ResponseEntity<List> addProduct(@RequestBody Product product)
     {
         products.add(product);
+        return ResponseEntity.ok(products);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<List> editProduct(@PathVariable int id, @RequestBody Product product)
+    {
+        for(int i = 0; i<products.size(); i++)
+        {
+
+            if(products.get(i).getId() == id)
+            {
+                products.set(i, product);
+            }
+
+        }
         return ResponseEntity.ok(products);
     }
 }
