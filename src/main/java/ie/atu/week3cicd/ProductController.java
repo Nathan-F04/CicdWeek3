@@ -40,4 +40,19 @@ public class ProductController {
         }
         return ResponseEntity.ok(products);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<List> DeleteProduct(@PathVariable int id)
+    {
+        for(int i = 0; i<products.size(); i++)
+        {
+
+            if(products.get(i).getId() == id)
+            {
+                products.remove(i);
+            }
+
+        }
+        return ResponseEntity.ok(products);
+    }
 }
